@@ -11,15 +11,17 @@
             </NuxtLink>
         </div>
         <div class="mb-8">
-            <h1 class="text-4xl">Contact</h1>
+            <h1 class="mb-4 text-4xl">Contact</h1>
             <p class="text-2xl">send me a message</p>
         </div>
         <form
             name="contact"
-            data-netlify="true"
-            method="post"
+            netlify
+            method="POST"
+            action="/success"
             class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
         >
+            <!-- <input type="hidden" name="form-name" value="form-value" /> -->
             <p>
                 <label class="block"
                     >Your Name:

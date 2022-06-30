@@ -20,12 +20,14 @@
         </div>
 
         <div
-            class="mb-16 flex grow items-center justify-end pt-24 text-end md:mx-16 md:items-start md:justify-between"
+            class="mb-16 flex grow items-center justify-between pt-24 text-end md:mx-16 md:items-start"
         >
-            <AnimatedHead
-                ref="rive"
-                class="w-3/4 max-w-sm -translate-x-16 md:w-1/3 md:translate-x-0"
-            />
+            <div class="w-1/2 md:w-1/3">
+                <AnimatedHead
+                    ref="rive"
+                    class="top-0 max-w-xs -translate-x-32 md:max-w-xs md:translate-x-0"
+                />
+            </div>
             <Transition name="fade" mode="out-in">
                 <div
                     class="w-64"
@@ -40,7 +42,7 @@
                 </div>
             </Transition>
 
-            <nav class="flex h-full flex-col justify-between">
+            <nav class="flex h-full w-1/2 flex-col justify-between md:w-1/3">
                 <div class="flex flex-col">
                     <NuxtLink
                         v-for="item in navItems"
@@ -49,7 +51,7 @@
                         @mouseover.native="item.flag = true"
                         @mouseleave.native="item.flag = false"
                         :to="item.href"
-                        class="text-3xl transition-all hover:text-yellow-500 md:text-3xl"
+                        class="flex-nowrap text-3xl transition-all hover:text-yellow-500 md:text-3xl"
                         :class="{
                             'hover:line-through': item.id === 'blog',
                             'opacity-50': !item.flag && anyHovered,
@@ -114,7 +116,7 @@ const navItems = reactive([
         id: 'about',
         flag: false,
         description:
-            'get to know more about me! what kind of work i do, what i am passionate about.',
+            'Get to know more about me! What kind of work I do, what I am passionate about.',
     },
     {
         text: 'Contact',
@@ -122,27 +124,32 @@ const navItems = reactive([
         id: 'contact',
         flag: false,
         description:
-            'want to work with me or you have other inquiries? write me a message and i will get back to you as soon as possible.',
+            'Want to work with me or you have other inquiries? Write me a message and I will get back to you as soon as possible.',
     },
     {
         text: 'Blog',
         href: '#',
         id: 'blog',
         flag: false,
-        description: '🚧  my blog is currently under construction  🚧',
+        description: '🚧  My blog is currently under construction. 🚧',
     },
     {
         text: 'Github',
         href: 'https://github.com/flowreaction',
         id: 'github',
         flag: false,
-        description: 'check out my github profile',
+        description: 'Check out my github profile.',
     },
 ])
 
 watch(navItems, () => {
-    if (navItems[1].flag && rive.value) {
-        rive.value.happyTrigger()
+    if (rive.value) {
+        if (navItems[1].flag) {
+            rive.value.happyTrigger()
+        }
+        if (navItems[2].flag) {
+            rive.value.sadTrigger()
+        }
     }
 })
 
