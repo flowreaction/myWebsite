@@ -1,14 +1,13 @@
 <template>
-    <canvas
-        @click="clickHandler"
-        ref="canvas"
-        :width="1000"
-        :height="1000"
-    ></canvas>
+    <canvas ref="canvas" :width="1000" :height="1000"></canvas>
 </template>
 
 <script setup lang="ts">
 import { Rive } from '@rive-app/canvas-single'
+
+const props = defineProps<{
+    onMountedCallback?: 'sad' | 'happy'
+}>()
 
 const src =
     'https://public.rive.app/community/runtime-files/2396-5883-animated-head.riv'
@@ -22,6 +21,7 @@ const riveInputs = {
     x: null,
     y: null,
 }
+
 const clickcounter = ref(0)
 const mouse = useMouse({ touch: false })
 const canvasPosition = useElementBounding(canvas)
@@ -42,34 +42,33 @@ watch([mouse.x, mouse.y], ([newX, newY]) => {
 
 onMounted(() => {
     riveInstance.value = newRive()
-    console.log(canvasPosition)
 })
 
 onBeforeUpdate(() => {
     riveInputs.x.value = 50
 })
 
-const clickHandler = () => {
-    console.log('click')
-    switch (clickcounter.value) {
-        case 0:
-            riveInputs.isHappy.value = true
-            riveInputs.agree.fire()
-            break
-        case 1:
-            riveInputs.isHappy.value = false
-            riveInputs.isSad.value = true
-            riveInputs.disagree.fire()
-            break
-        default:
-            break
-    }
-    setTimeout(() => {
-        riveInputs.isHappy.value = false
-        riveInputs.isSad.value = false
-    }, 2000)
-    clickcounter.value = (clickcounter.value + 1) % 2
-}
+// const clickHandler = () => {
+//     console.log('click')
+//     switch (clickcounter.value) {
+//         case 0:
+//             riveInputs.isHappy.value = true
+//             riveInputs.agree.fire()
+//             break
+//         case 1:
+//             riveInputs.isHappy.value = false
+//             riveInputs.isSad.value = true
+//             riveInputs.disagree.fire()
+//             break
+//         default:
+//             break
+//     }
+//     setTimeout(() => {
+//         riveInputs.isHappy.value = false
+//         riveInputs.isSad.value = false
+//     }, 2000)
+//     clickcounter.value = (clickcounter.value + 1) % 2
+// }
 
 const resetAnimation = () => {
     setTimeout(() => {
@@ -89,9 +88,25 @@ const happyTrigger = () => {
     resetAnimation()
 }
 
+const setHappy = () => {
+    riveInputs.isHappy.value = true
+}
+
+const setSad = () => {
+    riveInputs.isSad.value = true
+}
+
+const resetMouth = () => {
+    riveInputs.isHappy.value = false
+    riveInputs.isSad.value = false
+}
+
 defineExpose({
     sadTrigger,
     happyTrigger,
+    setHappy,
+    setSad,
+    resetMouth,
 })
 
 const newRive = () => {
@@ -113,10 +128,17 @@ const newRive = () => {
             riveInputs.disagree = inputs.find((i) => i.name === 'disagree')
             riveInputs.x = inputs.find((i) => i.name === 'x')
             riveInputs.y = inputs.find((i) => i.name === 'y')
-            riveInputs.x.value = 50
-            riveInputs.y.value = 50
+            riveInputs.x.value = 0
+            riveInputs.y.value = 0
+            if (props.onMountedCallback === 'sad') {
+                setSad()
+            } else if (props.onMountedCallback === 'happy') {
+                setHappy()
+            }
         },
     })
     return riveInstance
 }
+
+onMounted(() => {})
 </script>

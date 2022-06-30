@@ -147,7 +147,9 @@ watch(navItems, () => {
             rive.value.happyTrigger()
         }
         if (navItems[2].flag) {
-            rive.value.sadTrigger()
+            rive.value.setSad()
+        } else {
+            rive.value.resetMouth()
         }
     }
 })
