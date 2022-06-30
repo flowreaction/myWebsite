@@ -16,17 +16,20 @@
         </div>
         <form
             name="contact"
-            netlify
+            data-netlify="true"
             method="POST"
             class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
             action="/success/"
             data-netlify-honeypot="bot-field"
+            @submit="handleSubmit($event, '/success/')"
         >
             <input type="hidden" name="form-name" value="contact" />
             <p>
                 <label class="block"
                     >Your Name:
                     <input
+                        required
+                        ref="nameinput"
                         type="text"
                         name="name"
                         class="mt-0 block w-full border-0 border-b-2 border-gray-200 bg-stone-500 px-0.5 focus:border-yellow-500 focus:ring-0 dark:bg-neutral-900"
@@ -36,6 +39,8 @@
                 <label
                     >Your Email:
                     <input
+                        required
+                        ref="emailinput"
                         type="email"
                         name="email"
                         class="mt-0 block w-full border-0 border-b-2 border-gray-200 bg-stone-500 px-0.5 invalid:border-pink-500 invalid:text-pink-600 focus:border-yellow-500 focus:ring-0 dark:bg-neutral-900"
@@ -45,6 +50,8 @@
                 <label
                     >Message:
                     <textarea
+                        required
+                        ref="messageinput"
                         name="message"
                         class="mt-0 block w-full border-0 border-b-2 border-gray-200 bg-stone-500 px-0.5 focus:border-yellow-500 focus:ring-0 dark:bg-neutral-900 md:h-32"
                     ></textarea>
@@ -52,7 +59,7 @@
             </p>
             <p>
                 <button
-                    type="submit"
+                    ref="submitbutton"
                     class="border px-4 py-2 hover:cursor-paperplane hover:border-yellow-500 hover:text-yellow-500"
                 >
                     Send
@@ -63,12 +70,35 @@
 </template>
 
 <script setup lang="ts">
+import { useNetlifySubmit } from '~~/composables/useNetlifySubmit'
+
 definePageMeta({
     pageTransition: {
         name: 'swipe-page-right',
         mode: 'out-in',
     },
 })
+
+const nameinput = ref<HTMLInputElement>()
+const emailinput = ref<HTMLInputElement>()
+const messageinput = ref<HTMLTextAreaElement>()
+const submitbutton = ref<HTMLButtonElement>()
+
+const disableSubmit = computed(() => {
+    if (
+        !nameinput.value?.validity.valueMissing &&
+        emailinput.value?.validity.valid &&
+        !messageinput.value?.validity.valueMissing
+    ) {
+        return false
+    } else {
+        return true
+    }
+})
+
+const handleSubmit = (event: Event, pathTo: string) => {
+    useNetlifySubmit(event, pathTo)
+}
 </script>
 
 <style scoped></style>

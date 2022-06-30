@@ -2,12 +2,12 @@ import { defineNuxtConfig } from 'nuxt'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    ssr: false,
-    nitro: {
-        prerender: {
-            routes: ['/contact'],
-        },
-    },
+    // ssr: false,
+    // nitro: {
+    //     prerender: {
+    //         routes: ['/contact'],
+    //     },
+    // },
     css: ['@/assets/css/styles.css'],
     build: {
         postcss: {
