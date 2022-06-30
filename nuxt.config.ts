@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     ssr: false,
     nitro: {
         prerender: {
-            routes: ['/contact', '/success'],
+            routes: ['/contact'],
         },
     },
     css: ['@/assets/css/styles.css'],
