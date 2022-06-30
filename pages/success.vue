@@ -19,6 +19,12 @@
             <span class="text-center text-2xl">
                 I will get back to you as soon as possible. Thank you!
             </span>
+            <NuxtLink
+                to="/"
+                class="mt-8 flex items-center justify-between gap-3 border px-2 py-2 text-2xl transition-all hover:border-yellow-500 hover:text-yellow-500 md:text-inherit"
+            >
+                <ArrowLeft /> Back
+            </NuxtLink>
             <!-- <p class="text-2xl">send me a message</p> -->
         </div>
     </div>
