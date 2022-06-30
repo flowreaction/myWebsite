@@ -21,8 +21,8 @@
             class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
             action="/success/"
             data-netlify-honeypot="bot-field"
+            @submit="handleSubmit($event, '/success/')"
         >
-            <!-- @submit="handleSubmit($event, '/success/')" -->
             <input type="hidden" name="form-name" value="contact" />
             <p>
                 <label class="block"
@@ -84,7 +84,7 @@ const emailinput = ref<HTMLInputElement>()
 const messageinput = ref<HTMLTextAreaElement>()
 const submitbutton = ref<HTMLButtonElement>()
 
-const handleSubmit = (event: SubmitEvent, pathTo: string) => {
+const handleSubmit = (event, pathTo: string) => {
     useNetlifySubmit(event, pathTo)
 }
 </script>

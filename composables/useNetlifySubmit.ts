@@ -12,14 +12,12 @@ export const useNetlifySubmit = (
     navigateToPage?: string
 ) => {
     event.preventDefault()
-    console.debug(event.target)
-    const form = event.target as HTMLFormElement
-    console.debug(new FormData(form))
     fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode({
-            ...event,
+            'form-name': event.target.getAttribute('name'),
+            ...name,
         }),
     }).then(async () => await navigateTo(navigateToPage))
 }
