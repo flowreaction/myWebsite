@@ -18,9 +18,9 @@
             name="contact"
             netlify
             method="POST"
-            action="/success/"
             class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
         >
+            <!-- action="/success/" -->
             <input type="hidden" name="form-name" value="form-value" />
             <p>
                 <label class="block"
