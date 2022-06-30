@@ -56,7 +56,7 @@ useHead({
                 'Florian Bopp - Engineer, Problem Solver, Team Player Check out my blog or contact me for work inquiries.',
         },
         { name: 'og:type', content: 'website' },
-        { name: 'og:image', content: '' },
+        { name: 'og:image', content: '/og.png' },
     ],
 })
 </script>
