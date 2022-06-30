@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @media (min-width: 768px) {
+    .swipe-page-left-enter-active,
+    .swipe-page-left-leave-active {
+        transition: transform 0.5s ease;
+    }
+    .swipe-page-left-enter-from,
+    .swipe-page-left-leave-to {
+        transform: translateX(-100%);
+    }
+    .swipe-page-right-enter-active,
+    .swipe-page-right-leave-active {
+        transition: transform 0.5s ease;
+    }
+    .swipe-page-right-enter-from,
+    .swipe-page-right-leave-to {
+        transform: translateX(100%);
+    }
+} */
+
+.swipe-page-right-enter-active,
+.swipe-page-right-leave-active {
+    transition: opacity 0.2s ease;
+}
+
+.swipe-page-right-enter-from,
+.swipe-page-right-leave-to {
+    opacity: 0;
+}
+.swipe-page-left-enter-active,
+.swipe-page-left-leave-active {
+    transition: opacity 0.2s ease;
+}
+
+.swipe-page-left-enter-from,
+.swipe-page-left-leave-to {
+    opacity: 0;
+}
