@@ -18,9 +18,9 @@
                 :options="typeWriteOptions"
             ></TypeWriter>
         </div>
-
+        <div class="h-1/5"></div>
         <div
-            class="mb-16 flex grow items-center justify-between pt-24 text-end md:mx-16 md:items-start"
+            class="mb-16 flex grow items-center justify-between text-end md:mx-16 md:items-start"
         >
             <div class="w-1/2 md:w-1/3">
                 <AnimatedHead
