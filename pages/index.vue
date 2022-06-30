@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-screen w-screen flex-col p-4">
+    <div class="flex h-screen flex-col">
         <div
             ref="mainHeader"
             class="mb-4 text-left text-5xl font-semibold text-white dark:text-yellow-500 md:text-6xl lg:text-8xl"
@@ -20,7 +20,7 @@
         </div>
         <div class="h-1/5"></div>
         <div
-            class="mb-16 flex grow items-center justify-between text-end md:mx-16 md:items-start"
+            class="flex grow items-center justify-between pb-16 text-end md:mx-16 md:items-start"
         >
             <div class="w-1/2 md:w-1/3">
                 <AnimatedHead
@@ -31,7 +31,7 @@
             <Transition name="fade" mode="out-in">
                 <div
                     class="w-64"
-                    :class="{ hidden: !anyHovered }"
+                    :class="{ hidden: !anyHovered || !isMobile }"
                     :key="descriptionBox"
                 >
                     <p
@@ -71,7 +71,6 @@
                 </button>
             </nav>
         </div>
-        <div class="flex items-center justify-end"></div>
     </div>
 </template>
 

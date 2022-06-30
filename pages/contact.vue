@@ -21,8 +21,8 @@
             class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
             action="/success/"
             data-netlify-honeypot="bot-field"
-            @submit="handleSubmit($event, '/success/')"
         >
+            <!-- @submit="handleSubmit($event, '/success/')" -->
             <input type="hidden" name="form-name" value="contact" />
             <p>
                 <label class="block"
@@ -59,6 +59,7 @@
             </p>
             <p>
                 <button
+                    type="submit"
                     ref="submitbutton"
                     class="border px-4 py-2 hover:cursor-paperplane hover:border-yellow-500 hover:text-yellow-500"
                 >

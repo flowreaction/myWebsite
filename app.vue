@@ -2,7 +2,7 @@
     <div
         class="bg-stone-500 font-mono text-lg leading-relaxed text-neutral-100 transition-colors dark:bg-neutral-900 dark:text-neutral-300"
     >
-        <NuxtPage class="mx-auto max-w-5xl px-4" />
+        <NuxtPage class="mx-auto max-w-5xl p-4" />
     </div>
 </template>
 
