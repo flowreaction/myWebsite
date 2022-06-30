@@ -7,13 +7,19 @@ function encode(data) {
         .join('&')
 }
 
-export const useNetlifySubmit = (event, navigateToPage?: string) => {
+export const useNetlifySubmit = (
+    event: SubmitEvent,
+    navigateToPage?: string
+) => {
     event.preventDefault()
+    console.debug(event.target)
+    const form = event.target as HTMLFormElement
+    console.debug(new FormData(form))
     fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode({
-            'form-name': event.currentTarget.getAttribute('name'),
+            ...event,
         }),
     }).then(async () => await navigateTo(navigateToPage))
 }
