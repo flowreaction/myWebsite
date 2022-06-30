@@ -19,9 +19,10 @@
             netlify
             method="POST"
             class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
+            action="/success/"
+            data-netlify-honeypot="bot-field"
         >
-            <!-- action="/success/" -->
-            <input type="hidden" name="form-name" value="form-value" />
+            <input type="hidden" name="form-name" value="contact" />
             <p>
                 <label class="block"
                     >Your Name:
