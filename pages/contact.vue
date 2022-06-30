@@ -18,10 +18,10 @@
             name="contact"
             netlify
             method="POST"
-            action="/success"
+            action="/success/"
             class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
         >
-            <!-- <input type="hidden" name="form-name" value="form-value" /> -->
+            <input type="hidden" name="form-name" value="form-value" />
             <p>
                 <label class="block"
                     >Your Name:
