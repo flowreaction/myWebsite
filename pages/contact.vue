@@ -15,7 +15,7 @@
             <p class="text-2xl">send me a message</p>
         </div>
         <form
-            name="contact"
+            name="contactme"
             data-netlify="true"
             method="POST"
             class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
@@ -23,7 +23,7 @@
             data-netlify-honeypot="bot-field"
         >
             <!-- @submit="handleSubmit($event, '/success/')" -->
-            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="form-name" value="contactme" />
             <p>
                 <label class="block"
                     >Your Name:
