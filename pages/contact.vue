@@ -20,7 +20,13 @@
             method="POST"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            @submit.prevent="handleSubmit($event)"
+            @submit.prevent="
+                useNetlifySubmit(
+                    $event,
+                    '/registernetlifyform.html',
+                    '/success'
+                )
+            "
             class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
         >
             <!-- @submit="handleSubmit($event, '/success/')" -->
@@ -72,44 +78,12 @@
 </template>
 
 <script setup lang="ts">
-import { useNetlifySubmit } from '~~/composables/useNetlifySubmit'
-
 definePageMeta({
     pageTransition: {
         name: 'swipe-page-right',
         mode: 'out-in',
     },
 })
-
-const contactform = ref<HTMLFormElement>()
-// const nameinput = ref<HTMLInputElement>()
-// const emailinput = ref<HTMLInputElement>()
-// const messageinput = ref<HTMLTextAreaElement>()
-// const submitbutton = ref<HTMLButtonElement>()
-
-const handleSubmit = async (event: Event) => {
-    console.debug(event.target)
-    const formData = new FormData(event.target as HTMLFormElement)
-    console.debug(formData)
-    const convertedFormEntries = Array.from(formData, ([key, value]) => [
-        key,
-        typeof value === 'string' ? value : value.name,
-    ])
-    console.debug(convertedFormEntries)
-    const body = new URLSearchParams(convertedFormEntries).toString()
-    console.debug(body)
-    await fetch('/registernetlifyform.html', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            // "Accept": "application/json",
-        },
-        body: body,
-    })
-        .then((response) => console.debug(response))
-        .then(async () => await navigateTo('/success/'))
-        .catch((error) => console.error(error))
-}
 </script>
 
 <style scoped></style>
