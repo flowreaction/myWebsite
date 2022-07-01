@@ -16,15 +16,15 @@
         </div>
         <form
             name="contact"
-            id="contact"
+            ref="contactform"
             method="POST"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            @submit.prevent="handleSubmit"
+            @submit.prevent="handleSubmit($event)"
             class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
         >
             <!-- @submit="handleSubmit($event, '/success/')" -->
-            <input type="hidden" name="form-name" value="contactme" />
+            <input type="hidden" name="form-name" value="contact" />
             <p>
                 <label class="block"
                     >Your Name:
@@ -87,15 +87,17 @@ const contactform = ref<HTMLFormElement>()
 // const messageinput = ref<HTMLTextAreaElement>()
 // const submitbutton = ref<HTMLButtonElement>()
 
-const handleSubmit = async (event) => {
-    console.debug(event.target.getAttribute('name'))
-    let formData = new FormData(contactform.value)
-    const convertedFormEntries = Array.from(
-        new FormData(contactform.value),
-        ([key, value]) => [key, typeof value === 'string' ? value : value.name]
-    )
-    let body = new URLSearchParams(convertedFormEntries).toString()
-    console.log(body)
+const handleSubmit = async (event: Event) => {
+    console.debug(event.target)
+    const formData = new FormData(event.target as HTMLFormElement)
+    console.debug(formData)
+    const convertedFormEntries = Array.from(formData, ([key, value]) => [
+        key,
+        typeof value === 'string' ? value : value.name,
+    ])
+    console.debug(convertedFormEntries)
+    const body = new URLSearchParams(convertedFormEntries).toString()
+    console.debug(body)
     await fetch('/registernetlifyform.html', {
         method: 'POST',
         headers: {
