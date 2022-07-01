@@ -15,12 +15,13 @@
             <p class="text-2xl">send me a message</p>
         </div>
         <form
-            name="contactme"
-            data-netlify="true"
+            name="contact"
+            id="contact"
             method="POST"
-            class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
-            action="/success/"
+            data-netlify="true"
             data-netlify-honeypot="bot-field"
+            @submit.prevent="handleSubmit"
+            class="flex w-full max-w-lg flex-col gap-12 px-4 md:w-1/2"
         >
             <!-- @submit="handleSubmit($event, '/success/')" -->
             <input type="hidden" name="form-name" value="contactme" />
@@ -80,13 +81,32 @@ definePageMeta({
     },
 })
 
-const nameinput = ref<HTMLInputElement>()
-const emailinput = ref<HTMLInputElement>()
-const messageinput = ref<HTMLTextAreaElement>()
-const submitbutton = ref<HTMLButtonElement>()
+const contactform = ref<HTMLFormElement>()
+// const nameinput = ref<HTMLInputElement>()
+// const emailinput = ref<HTMLInputElement>()
+// const messageinput = ref<HTMLTextAreaElement>()
+// const submitbutton = ref<HTMLButtonElement>()
 
-const handleSubmit = (event, pathTo: string) => {
-    useNetlifySubmit(event, pathTo)
+const handleSubmit = async (event) => {
+    console.debug(event.target.getAttribute('name'))
+    let formData = new FormData(contactform.value)
+    const convertedFormEntries = Array.from(
+        new FormData(contactform.value),
+        ([key, value]) => [key, typeof value === 'string' ? value : value.name]
+    )
+    let body = new URLSearchParams(convertedFormEntries).toString()
+    console.log(body)
+    await fetch('/registernetlifyform.html', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            // "Accept": "application/json",
+        },
+        body: body,
+    })
+        .then((response) => console.debug(response))
+        .then(async () => await navigateTo('/success/'))
+        .catch((error) => console.error(error))
 }
 </script>
 
