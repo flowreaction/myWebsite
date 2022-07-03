@@ -22,6 +22,9 @@ onMounted(() => {
 })
 
 const isDark = useDark()
+onBeforeMount(() => {
+    isDark.value = true
+})
 const toggleDark = useToggle(isDark)
 
 provide('isDark', { isDark, toggleDark })
