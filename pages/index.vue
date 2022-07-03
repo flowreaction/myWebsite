@@ -1,36 +1,62 @@
 <template>
     <div class="flex h-screen flex-col">
-        <div
-            ref="mainHeader"
-            class="mb-4 text-left text-5xl font-semibold text-white dark:text-yellow-500 md:text-6xl lg:text-8xl"
-        >
-            Florian <br />
-            Bopp
+        <div>
+            <Motion
+                :initial="{ y: -200, opacity: 0 }"
+                :animate="{
+                    y: 0,
+                    opacity: 1,
+                }"
+                :transition="{
+                    duration: 1,
+                    ease: 'ease-out',
+                }"
+            >
+                <div
+                    ref="mainHeader"
+                    class="mb-4 mt-8 text-left text-5xl font-semibold text-white dark:text-yellow-500 md:text-6xl lg:text-8xl"
+                >
+                    Florian <br />
+                    Bopp
+                </div>
+                <div
+                    class="mt-16 max-w-md select-none rounded-xl bg-neutral-800 p-2 pl-3 text-2xl focus:border-yellow-500 dark:bg-black md:max-w-2xl md:p-4 md:text-4xl lg:text-5xl"
+                >
+                    <span class="mr-2 text-yellow-500">></span>
+                    <TypeWriter
+                        :texts="typedTexts"
+                        caret="_"
+                        caretColor="yellow"
+                        :options="typeWriteOptions"
+                    ></TypeWriter>
+                </div>
+            </Motion>
         </div>
-        <div
-            class="my-4 max-w-md select-none rounded-xl bg-neutral-800 p-2 pl-3 text-2xl focus:border-yellow-500 dark:bg-black md:max-w-2xl md:p-4 md:text-4xl lg:text-5xl"
-        >
-            <span class="mr-2 text-yellow-500">></span>
-            <TypeWriter
-                :texts="typedTexts"
-                caret="_"
-                caretColor="yellow"
-                :options="typeWriteOptions"
-            ></TypeWriter>
-        </div>
-        <div class="h-1/5"></div>
+        <div class="mb-4 h-1/5"></div>
         <div
             class="flex grow items-center justify-between pb-16 text-end md:mx-16 md:items-start"
         >
-            <div class="w-1/2 md:w-1/3">
-                <AnimatedHead
-                    ref="rive"
-                    class="top-0 max-w-xs -translate-x-32 md:max-w-xs md:translate-x-0"
-                />
+            <div class="z-0 w-1/2 md:w-1/3">
+                <Motion
+                    :initial="{ opacity: 0 }"
+                    :animate="{
+                        opacity: 1,
+                    }"
+                    :transition="{
+                        // delay: 1,
+                        duration: 2,
+                        easing: 'ease',
+                    }"
+                >
+                    <AnimatedHead
+                        ref="rive"
+                        class="top-0 max-w-xs -translate-x-32 md:max-w-sm md:-translate-x-12"
+                    />
+                </Motion>
             </div>
             <Transition name="fade" mode="out-in">
                 <div
-                    class="w-64"
+                    class="z-10 w-64"
                     :class="{ hidden: !anyHovered || !isMobile }"
                     :key="descriptionBox"
                 >
@@ -44,31 +70,53 @@
 
             <nav class="flex h-full w-1/2 flex-col justify-between md:w-1/3">
                 <div class="flex flex-col">
-                    <NuxtLink
-                        v-for="item in navItems"
-                        ref="links"
-                        :key="item.id"
-                        @mouseover.native="item.flag = true"
-                        @mouseleave.native="item.flag = false"
-                        :to="item.href"
-                        class="flex-nowrap text-3xl transition-all hover:text-yellow-500 md:text-3xl"
-                        :class="{
-                            'hover:line-through': item.id === 'blog',
-                            'opacity-50': !item.flag && anyHovered,
+                    <Motion
+                        v-for="(item, index) in navItems"
+                        :initial="{ x: 200, opacity: 0 }"
+                        :animate="{
+                            x: 0,
+                            opacity: 1,
                         }"
-                        >{{ item.text }}</NuxtLink
+                        :transition="{
+                            delay: index / 20,
+                            duration: 1,
+                            easing: 'ease',
+                        }"
                     >
+                        <NuxtLink
+                            ref="links"
+                            :key="item.id"
+                            @mouseover.native="item.flag = true"
+                            @mouseleave.native="item.flag = false"
+                            :to="item.href"
+                            class="navlink flex-nowrap text-3xl transition-all hover:text-yellow-500 md:text-3xl"
+                            :class="{
+                                'hover:line-through': item.id === 'blog',
+                                'opacity-50': !item.flag && anyHovered,
+                            }"
+                            >{{ item.text }}</NuxtLink
+                        >
+                    </Motion>
                 </div>
-                <button
-                    @click="toggleDark()"
-                    class="cursor-sun text-right hover:text-yellow-500"
-                    :class="{
-                        'cursor-sun ': isDark,
-                        'cursor-moon ': !isDark,
+                <Motion
+                    :initial="{ opacity: 0 }"
+                    :animate="{ opacity: 1 }"
+                    :transition="{
+                        duration: 1,
+                        ease: 'ease-out',
                     }"
                 >
-                    {{ isDark ? 'lighten' : 'darken' }}
-                </button>
+                    <button
+                        @click="toggleDark()"
+                        class="cursor-sun text-right hover:text-yellow-500"
+                        :class="{
+                            'cursor-sun ': isDark,
+                            'cursor-moon ': !isDark,
+                        }"
+                    >
+                        {{ isDark ? 'lighten' : 'darken' }}
+                    </button>
+                </Motion>
             </nav>
         </div>
     </div>
@@ -76,6 +124,8 @@
 
 <script setup lang="ts">
 import { typedTextOptions } from '~~/composables/useTypedText'
+import { Motion } from 'motion/vue'
+import { stagger } from 'motion'
 
 const isMobile = inject('isMobile')
 const rive = ref(null)
@@ -85,6 +135,7 @@ definePageMeta({
     pageTransition: {
         name: 'swipe-page-left',
         mode: 'out-in',
+        appear: true,
     },
 })
 
@@ -164,7 +215,19 @@ const typeWriteOptions: typedTextOptions = {
 }
 
 const links = ref()
-//Motions
+
+/**
+ * Motion one Animations
+ */
+// onMounted(() => {
+//     animate(
+//         '.navlink',
+//         { x: -100 },
+//         {
+//             duration: 1,
+//         }
+//     )
+// })
 </script>
 
 <style scoped>
