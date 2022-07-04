@@ -147,13 +147,16 @@ class Snake {
     private gameboard: Gameboard
     private timeBetweenMoves: number = 300
     private lastMove: number = 0
+    public currentScore: number = 0
+    private externalScore
 
-    constructor(game: Gameboard) {
+    constructor(game: Gameboard, score: Ref<number>) {
         this.gameboard = game
         this.direction = Direction.Right
         this.requestedDirection = this.direction
         this.initSnake()
         this.run(0)
+        this.externalScore = score
     }
 
     private setDirection(direction: Direction) {
@@ -215,6 +218,27 @@ class Snake {
         }
     }
 
+    // private dispatchScore() {
+    //     dispatchEvent(
+    //         new CustomEvent('score', {
+    //             detail: this.currentScore,
+    //             bubbles: true,
+    //         })
+    //     )
+    // }
+
+    private addToScore() {
+        this.currentScore += 1
+        this.externalScore.value = this.currentScore
+        // this.dispatchScore()
+    }
+
+    private resetScore() {
+        this.currentScore = 0
+        this.externalScore.value = this.currentScore
+        // this.dispatchScore()
+    }
+
     private moveSnake = () => {
         this.setDirection(this.requestedDirection)
         const { dx, dy } = this.getDxDy()
@@ -224,6 +248,7 @@ class Snake {
             this.resetSnake()
         }
         if (this.isEatingFood(newHead)) {
+            this.addToScore()
             this.body.unshift(newHead)
             this.gameboard.removeFoodFromBoardTile(newHead)
             this.addNewFood()
@@ -302,6 +327,7 @@ class Snake {
     }
 
     private resetSnake() {
+        this.resetScore()
         this.timeBetweenMoves = 300
         while (this.body.length > 1) this.body.pop()
     }

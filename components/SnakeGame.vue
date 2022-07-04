@@ -7,13 +7,9 @@
             <!-- :height="wHeight * pixelRatio"
         :width="wWidth * pixelRatio" -->
         </canvas>
-        <div class="fixed top-8 left-8 flex w-full items-start justify-start">
-            <NuxtLink
-                to="/"
-                class="flex items-center justify-between gap-3 text-2xl hover:text-yellow-500 md:text-inherit"
-            >
-                <ArrowLeft /> Back
-            </NuxtLink>
+        <div class="fixed right-8 top-8 flex flex-col justify-end text-right">
+            <span>High-Score: {{ highScore }}</span>
+            <span>Score: {{ currentScore }}</span>
         </div>
         <div
             v-if="mobile"
@@ -55,6 +51,8 @@
 
 <script setup lang="ts">
 import { Snake, Gameboard, Direction } from '@/composables/useSnake'
+import { StorageOptions, useStorage } from '@vueuse/core'
+
 const isDark = inject('isDark')
 const gameboard = ref<HTMLCanvasElement>()
 
@@ -69,35 +67,45 @@ watchEffect(() => {
     }
 })
 
-let snake: Snake = null
+const highScore = useStorage('highScore-storage', 0)
+const currentScore = ref(0)
+
+const snake = ref<Snake>()
 watchOnce(gameboard, () => {
-    snake = new Snake(
+    snake.value = new Snake(
         new Gameboard(
             gameboard.value.width,
             gameboard.value.height,
             gameboard.value?.getContext('2d'),
             30,
             pixelRatio.value
-        )
+        ),
+        currentScore
     )
 })
 
+watch(currentScore, (score) => {
+    if (score > highScore.value) {
+        highScore.value = score
+    }
+})
+
 const handleButtonClick = (dir: Direction) => {
-    snake?.requestDirection(dir)
+    snake.value?.requestDirection(dir)
 }
 
 onKeyStroke('ArrowUp', () => {
-    snake?.requestDirection(Direction.Up)
+    snake.value?.requestDirection(Direction.Up)
 })
 
 onKeyStroke('ArrowDown', () => {
-    snake?.requestDirection(Direction.Down)
+    snake.value?.requestDirection(Direction.Down)
 })
 onKeyStroke('ArrowLeft', () => {
-    snake?.requestDirection(Direction.Left)
+    snake.value?.requestDirection(Direction.Left)
 })
 onKeyStroke('ArrowRight', () => {
-    snake?.requestDirection(Direction.Right)
+    snake.value?.requestDirection(Direction.Right)
 })
 
 // const handleKeydown = (direction: Direction) => {
