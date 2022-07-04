@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed h-screen w-screen bg-black/80 p-0">
+    <div class="fixed h-screen w-screen p-0">
         <SnakeGame />
     </div>
 </template>

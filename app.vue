@@ -33,6 +33,13 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 const isMobile = breakpoints.md
 provide('isMobile', isMobile)
 
+const isMobileUA = computed(() => {
+    return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        window.navigator.userAgent
+    )
+})
+provide('isMobileUA', isMobileUA)
+
 useHead({
     titleTemplate: (title) => {
         if (!isMobile.value) {
