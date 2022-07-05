@@ -261,7 +261,7 @@ class Snake {
                 ) {
                     this.timeBetweenMoves -= 10
                 } else if (this.timeBetweenMoves <= 50) {
-                    this.timeBetweenMoves -= 5
+                    this.timeBetweenMoves -= 2
                 } else if (this.timeBetweenMoves <= 10) {
                     this.timeBetweenMoves -= 1
                 }

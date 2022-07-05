@@ -64,6 +64,16 @@ watchEffect(() => {
     if (gameboard.value) {
         gameboard.value.height = wHeight.value * pixelRatio.value
         gameboard.value.width = wWidth.value * pixelRatio.value
+        snake.value = new Snake(
+            new Gameboard(
+                gameboard.value.width,
+                gameboard.value.height,
+                gameboard.value?.getContext('2d'),
+                30,
+                pixelRatio.value
+            ),
+            currentScore
+        )
     }
 })
 
@@ -71,18 +81,6 @@ const highScore = useStorage('highScore-storage', 0)
 const currentScore = ref(0)
 
 const snake = ref<Snake>()
-watchOnce(gameboard, () => {
-    snake.value = new Snake(
-        new Gameboard(
-            gameboard.value.width,
-            gameboard.value.height,
-            gameboard.value?.getContext('2d'),
-            30,
-            pixelRatio.value
-        ),
-        currentScore
-    )
-})
 
 watch(currentScore, (score) => {
     if (score > highScore.value) {
