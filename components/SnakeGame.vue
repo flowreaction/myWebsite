@@ -7,9 +7,13 @@
         </canvas>
         <div
             v-if="gameover"
-            class="fixed inset-x-0 inset-y-0 z-50 m-auto flex h-5/6 w-3/4 max-w-5xl flex-col rounded-xl bg-black p-4 text-white md:h-3/4 md:w-1/2"
+            class="fixed inset-x-0 inset-y-0 z-50 m-auto flex h-5/6 w-3/4 max-w-5xl flex-col rounded-xl border-4 border-yellow-500 bg-black p-4 text-white md:h-3/4 md:w-1/2"
         >
-            <h1 class="mb-6 flex-none text-center text-4xl">Game Over</h1>
+            <h1
+                class="mb-6 flex-none text-center text-4xl text-yellow-500 md:text-6xl"
+            >
+                Game Over
+            </h1>
             <section class="grow overflow-y-hidden">
                 <h2 class="mb-4 text-center text-3xl">Top Scores</h2>
                 <div class="flex justify-around text-2xl">
@@ -18,14 +22,19 @@
                 <div class="h-full overflow-y-hidden">
                     <ul>
                         <li
-                            v-for="entry in topTen"
+                            v-for="(entry, indx) in topTen"
                             :key="entry.date.toString"
-                            class="flex justify-around truncate odd:bg-neutral-900"
+                            class="flex justify-around truncate first:text-yellow-500 odd:bg-neutral-900"
                         >
-                            <span class="w-1/2 truncate px-1 text-left">{{
-                                entry.name
-                            }}</span
-                            ><span class="w-1/2 truncate px-1 text-right">{{
+                            <div
+                                class="flex w-1/2 items-center justify-start px-1"
+                            >
+                                <span v-if="indx === 0" class="pr-1">👑</span>
+                                <span class="truncate text-left"
+                                    >{{ entry.name }}
+                                </span>
+                            </div>
+                            <span class="w-1/2 truncate px-1 text-right">{{
                                 entry.score
                             }}</span>
                         </li>
@@ -35,7 +44,7 @@
             <section
                 class="inset-x-0 bottom-0 flex flex-none flex-col justify-end gap-2 bg-black py-2"
             >
-                <div class="flex flex-col items-center justify-start">
+                <div class="flex flex-col items-center justify-start px-2">
                     <p>Your score: {{ currentScore }}</p>
                     <!-- <label for="name">Your Name</label> -->
                     <input
@@ -45,19 +54,19 @@
                         name="name"
                         id="name"
                         placeholder="your name here"
-                        class="my-1 block w-full rounded border-0 border-b-2 border-black bg-neutral-900 px-2 focus:border-yellow-500 focus:ring-0"
+                        class="my-1 block h-14 w-full rounded border-0 border-b-2 border-black bg-neutral-900 px-2 text-center focus:border-yellow-500 focus:ring-0"
                     />
                 </div>
                 <div class="flex justify-around">
                     <button
                         @click="restart()"
-                        class="rounded-lg bg-neutral-900 p-4 text-white"
+                        class="w-5/12 rounded-lg bg-neutral-900 p-4 text-white"
                     >
                         Restart
                     </button>
                     <button
                         @click="exit()"
-                        class="rounded-lg bg-neutral-900 p-4 text-white"
+                        class="w-5/12 rounded-lg bg-neutral-900 p-4 text-white"
                     >
                         Exit
                     </button>
