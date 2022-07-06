@@ -139,6 +139,8 @@ class Gameboard {
         })
     }
 }
+
+type GameState = 'playing' | 'paused' | 'gameover'
 class Snake {
     private direction: Direction
     private requestedDirection: Direction
@@ -149,14 +151,20 @@ class Snake {
     private lastMove: number = 0
     public currentScore: number = 0
     private externalScore
+    private gamestate
 
-    constructor(game: Gameboard, score: Ref<number>) {
+    constructor(
+        game: Gameboard,
+        score: Ref<number>,
+        gamestate: Ref<GameState | null>
+    ) {
         this.gameboard = game
         this.direction = Direction.Right
         this.requestedDirection = this.direction
         this.initSnake()
-        this.run(0)
         this.externalScore = score
+        this.gamestate = gamestate
+        this.start()
     }
 
     private setDirection(direction: Direction) {
@@ -245,7 +253,7 @@ class Snake {
         let newHead = { x: this.body[0].x + dx, y: this.body[0].y + dy }
         newHead = this.checkNewHeadInWall(newHead)
         if (this.isColliding(newHead)) {
-            this.resetSnake()
+            this.stop()
         }
         if (this.isEatingFood(newHead)) {
             this.addToScore()
@@ -358,20 +366,31 @@ class Snake {
         this.addToGameboard()
     }
 
-    public run(now): void {
+    private run(): void {
         this.gameboard.draw()
         setTimeout(() => {
-            this.lastMove = now
             this.updateSnake()
-            this.gameboard.draw()
+            // this.gameboard.draw()
             if (!this.stopped) {
-                requestAnimationFrame((now) => this.run(now))
+                requestAnimationFrame(() => this.run())
             }
         }, this.timeBetweenMoves)
     }
 
+    public restart() {
+        this.stopped = false
+        this.resetSnake()
+        this.run()
+    }
+
+    private start() {
+        this.stopped = false
+        this.run()
+    }
+
     public stop(): void {
         this.stopped = true
+        this.gamestate.value = 'gameover'
     }
 }
 export { Snake, Gameboard }
