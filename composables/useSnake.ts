@@ -81,9 +81,17 @@ class Gameboard {
             j = 0,
             y = 0
 
-        for (i = 0, x = 0; i < this.width; i += this.step, x++) {
+        for (
+            i = 0 + this.step / 2, x = 0;
+            i < this.width - this.step;
+            i += this.step, x++
+        ) {
             this.board[x] = []
-            for (j = 0, y = 0; j < this.height; j += this.step, y++) {
+            for (
+                j = 0 + this.step / 2, y = 0;
+                j < this.height - this.step;
+                j += this.step, y++
+            ) {
                 this.board[x][y] = {
                     coords: {
                         x: x,
@@ -112,6 +120,15 @@ class Gameboard {
 
     public draw() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+        this.ctx.fillStyle = '#000'
+        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+        this.ctx.fillStyle = 'rgba(23,23,23,0.5)'
+        this.ctx.fillRect(
+            0 + this.step / 2,
+            0 + this.step / 2,
+            this.ctx.canvas.width - this.step,
+            this.ctx.canvas.height - this.step
+        )
         this.board.forEach((row) => {
             row.forEach((tile) => {
                 if (tile.withSnake) {

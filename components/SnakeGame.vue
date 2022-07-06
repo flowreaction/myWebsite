@@ -75,7 +75,7 @@
             <div class="flex items-center justify-center">
                 <div
                     @click="handleButtonClick(Direction.Up)"
-                    class="rotate-180 rounded-full bg-yellow-400 px-6 py-4 text-black opacity-30"
+                    class="rotate-180 rounded-full bg-yellow-400 px-8 py-6 text-black opacity-30"
                 >
                     v
                 </div>
@@ -83,13 +83,13 @@
             <div class="flex items-center justify-center gap-14">
                 <div
                     @click="handleButtonClick(Direction.Left)"
-                    class="rounded-full bg-yellow-400 px-6 py-4 text-black opacity-30"
+                    class="rounded-full bg-yellow-400 px-8 py-6 text-black opacity-30"
                 >
                     &lt
                 </div>
                 <div
                     @click="handleButtonClick(Direction.Right)"
-                    class="rounded-full bg-yellow-400 px-6 py-4 text-black opacity-30"
+                    class="rounded-full bg-yellow-400 px-8 py-6 text-black opacity-30"
                 >
                     >
                 </div>
@@ -97,7 +97,7 @@
             <div class="flex items-center justify-center">
                 <div
                     @click="handleButtonClick(Direction.Down)"
-                    class="rounded-full bg-yellow-400 px-6 py-4 text-black opacity-30"
+                    class="rounded-full bg-yellow-400 px-8 py-6 text-black opacity-30"
                 >
                     v
                 </div>
