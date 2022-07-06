@@ -6,7 +6,7 @@
  * @param {string} pathToDummyForm - Path to the dummy form in your public directory, which is needed for netlify to recognize that there is a form.
  * @param {string} pathToNextPage - Path to the next page you want to redirect to after the form is submitted. This will be used by the nuxt 3 navigateTo() utility function.
  */
-export default async function useNetlifyFormSubmit(
+export default async function useNetlifySubmit(
     /**
      * The event submitted by the form
      * @type {Event}
@@ -23,16 +23,18 @@ export default async function useNetlifyFormSubmit(
      */
     pathToNextPage: string
 ) {
-    // console.debug(event.target)
     const formData = new FormData(event.target as HTMLFormElement)
-    // console.debug(formData)
+    const bodyObject = Object.fromEntries(formData)
     const convertedFormEntries = Array.from(formData, ([key, value]) => [
         key,
         typeof value === 'string' ? value : value.name,
     ])
-    // console.debug(convertedFormEntries)
+
     const body = new URLSearchParams(convertedFormEntries).toString()
-    // console.debug(body)
+    const { data, error, status } = await $fetch('/api/contact/contact', {
+        method: 'POST',
+        body: bodyObject,
+    })
     await fetch(pathToDummyForm, {
         method: 'POST',
         headers: {
@@ -41,7 +43,7 @@ export default async function useNetlifyFormSubmit(
         },
         body: body,
     })
-        // .then((response) => console.debug(response))
-        .then(async () => await navigateTo(pathToNextPage))
-        .catch((error) => console.error(error))
+    // .then(async () => await navigateTo(pathToNextPage))
+    // .catch((error) => console.error(error))
+    await navigateTo(pathToNextPage)
 }
