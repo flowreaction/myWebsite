@@ -33,6 +33,11 @@ class Gameboard {
     private board: Boardtile[][]
     private boardWidth: number
     private boardHeight: number
+    private wOffset: number
+    private hOffset: number
+    private wSteps: number
+    private hSteps: number
+
     // public snake: Snake
 
     constructor(
@@ -46,7 +51,13 @@ class Gameboard {
         this.height = height
         this.ctx = ctx
         this.snakePartSize = snakePartSize
-        this.step = this.calculateStep(snakePartSize, pixelRatio)
+        this.step = snakePartSize * pixelRatio
+        const { heightOffset, widthOffset, heightSteps, widthSteps } =
+            this.calculateStep(snakePartSize, pixelRatio)
+        this.hOffset = heightOffset
+        this.wOffset = widthOffset
+        this.hSteps = heightSteps
+        this.wSteps = widthSteps
         this.createGrid()
     }
 
@@ -68,28 +79,34 @@ class Gameboard {
         return this.board
     }
 
-    private calculateStep(snakePartSize: number, pixelRatio: number): number {
-        return (this.width / snakePartSize) * pixelRatio <= 30 * pixelRatio
-            ? (this.width / snakePartSize) * pixelRatio
-            : 30 * pixelRatio
+    private calculateStep(snakePartSize: number, pixelRatio: number) {
+        const widthOffset = this.width % (snakePartSize * pixelRatio)
+        const heightOffset = this.height % (snakePartSize * pixelRatio)
+        const widthSteps = Math.floor(this.width / (snakePartSize * pixelRatio))
+        const heightSteps = Math.floor(
+            this.height / (snakePartSize * pixelRatio)
+        )
+        return {
+            widthOffset,
+            heightOffset,
+            widthSteps,
+            heightSteps,
+        }
     }
 
     private createGrid() {
         this.board = []
-        let i = 0,
-            x = 0,
-            j = 0,
-            y = 0
+        let i, x, j, y
 
         for (
-            i = 0 + this.step / 2, x = 0;
-            i < this.width - this.step;
+            i = this.wOffset / 2, x = 0;
+            i < this.width - this.wOffset;
             i += this.step, x++
         ) {
             this.board[x] = []
             for (
-                j = 0 + this.step / 2, y = 0;
-                j < this.height - this.step;
+                j = this.hOffset / 2, y = 0;
+                j < this.height - this.hOffset;
                 j += this.step, y++
             ) {
                 this.board[x][y] = {
@@ -124,10 +141,10 @@ class Gameboard {
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
         this.ctx.fillStyle = 'rgba(23,23,23,0.5)'
         this.ctx.fillRect(
-            0 + this.step / 2,
-            0 + this.step / 2,
-            this.ctx.canvas.width - this.step,
-            this.ctx.canvas.height - this.step
+            0 + this.wOffset / 2,
+            0 + this.hOffset / 2,
+            this.ctx.canvas.width - this.wOffset,
+            this.ctx.canvas.height - this.hOffset
         )
         this.board.forEach((row) => {
             row.forEach((tile) => {
