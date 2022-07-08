@@ -8,100 +8,76 @@
                 <ArrowLeft /> Back
             </NuxtLink>
         </div>
-        <article>
+        <article class="">
             <h1 class="pt-16 text-4xl">About Me</h1>
             <div
                 class="mt-4 flex flex-col-reverse items-start justify-between md:flex-row"
             >
-                <p class="mt-8 md:w-1/2">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Autem odit temporibus aspernatur iusto dicta quae iste eum
-                    ad et. Accusamus impedit, est deleniti sapiente ex nam
-                    tempore amet ad mollitia voluptatibus commodi officia
-                    quisquam dolores cumque neque? Natus reprehenderit sapiente,
-                    corrupti consectetur molestiae alias aliquam neque quasi
-                    obcaecati saepe blanditiis!
-                </p>
+                <div class="mt-8 md:w-1/2">
+                    <p class="mb-2">
+                        Hey, I am Florian, a software engineer, father and
+                        coffee nerd.
+                        <CoffeeIcon class="inline h-8 w-8" />
+                    </p>
+                    <p>
+                        I enjoy building things that people love to use. I feel
+                        most at home when I am busy building frontend
+                        applications, but I also enjoy building backend systems.
+                    </p>
+                </div>
+                <div class="flex h-1/2 grow items-end justify-start md:w-1/2">
+                    <AnimatedHead class="h-full w-full" />
+                </div>
             </div>
-            <section>
+            <section class="relative z-20">
                 <h2 class="pt-16 text-xl">Specialized Knowledge</h2>
-                <h1 class="text-4xl">
+                <h1 class="mb-16 text-4xl">
                     Building modern Aplications using industrty Standards
                 </h1>
-                <LogoBanner class="my-8" />
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Aperiam a porro ducimus sunt culpa, nostrum fuga cumque
-                    aliquid illo velit, eos eum ratione blanditiis voluptate
-                    soluta harum. Molestias, laudantium cumque?
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Accusantium nostrum optio neque reiciendis et saepe illo
-                    cumque, odio quibusdam totam numquam ut molestias corporis
-                    soluta impedit, iure magni. Possimus sed id architecto ut
-                    vitae totam ab doloribus quibusdam tempore facere quas atque
-                    ipsum et labore est, fugiat assumenda odio voluptas.
-                    Corporis alias amet quo est ea nesciunt soluta ducimus eos
-                    vero sequi quia voluptate at maxime obcaecati unde cumque
-                    laboriosam aperiam natus, maiores officiis iure dicta.
-                    Voluptates optio rem eum accusamus, ullam hic veniam
-                    possimus tempore doloremque provident facilis praesentium
-                    in, eveniet voluptatem molestiae a odit qui, quisquam
-                    perspiciatis earum. Adipisci praesentium eligendi
-                    consectetur ut, sint saepe maiores odio similique
-                    voluptatem, nobis illo numquam culpa molestias officia
-                    corporis, doloribus atque sequi magnam labore. Neque quia
-                    reiciendis harum ratione explicabo quisquam repudiandae
-                    itaque odit dolorem aut, illum hic, doloremque ad fugiat
-                    repellat animi, ex pariatur autem laudantium incidunt sequi
-                    culpa consectetur. Reprehenderit fuga, alias aspernatur
-                    delectus excepturi labore quas natus cupiditate doloremque
-                    expedita deserunt id, tenetur doloribus magni ipsa
-                    perspiciatis et, accusantium facere? Sunt fuga, esse, harum
-                    fugiat tempora itaque nemo eligendi ducimus expedita, sequi
-                    voluptas praesentium ab consequuntur? Dicta unde ab non
-                    corporis quas cum vero nemo! Libero, praesentium. Temporibus
-                    sapiente facere, culpa impedit labore, commodi maiores amet
-                    dolorem provident voluptatem delectus cumque magnam velit
-                    saepe reprehenderit. Nihil animi necessitatibus facere
-                    suscipit vel corporis sint itaque iure! Inventore magnam
-                    repellendus sint, nulla obcaecati voluptates! Impedit nulla
-                    illo iure? Ab consequatur numquam explicabo quod debitis!
-                    Fugit illo quae cumque repellendus accusamus consectetur
-                    dolorem nulla! Alias optio aut, molestiae non pariatur
-                    delectus eos vel nobis cumque. Fuga quasi temporibus
-                    obcaecati modi sed, ipsa repudiandae suscipit! Ex itaque
-                    tempora eos atque veritatis voluptatum reprehenderit dolore
-                    reiciendis aperiam, aspernatur libero? Officia alias
-                    assumenda consequatur quas esse, distinctio repellendus
-                    dicta totam quos illo voluptas quasi laboriosam ut veniam
-                    aperiam magni eveniet nostrum iure. At laborum delectus
-                    maxime adipisci vitae culpa, est saepe eum ipsa numquam.
-                    Quia, vero eos. Quia laudantium nesciunt, vero ullam eius
-                    voluptatibus nisi delectus ad tempore necessitatibus alias
-                    ducimus maiores facilis possimus animi harum eum ea illum
-                    similique corporis a minima perferendis error incidunt.
-                    Minus placeat sit repudiandae hic fugit excepturi,
-                    laudantium alias maiores nihil totam vitae consequuntur nemo
-                    quaerat id dolorem nisi ipsam. Dolorem odit architecto neque
-                    tempore et at minima, corrupti tempora minus perspiciatis
-                    libero ipsam quam, eligendi fugit aspernatur voluptate quod
-                    pariatur aperiam cumque eum asperiores nam ipsa. Dolore
-                    velit dolorum eius eligendi debitis consectetur ab nobis rem
-                    harum soluta nemo, libero, quas nesciunt quis incidunt amet
-                    accusamus explicabo! Iure saepe ab quidem exercitationem.
-                    Soluta adipisci veniam quae ipsam nostrum architecto eos
-                    saepe hic cumque. Ex nulla aliquam similique, tenetur maxime
-                    quo minus voluptates itaque corrupti libero magni ad amet ea
-                    provident exercitationem veritatis quaerat ipsa harum
-                    pariatur incidunt. Voluptate dolorem quos, exercitationem
-                    dignissimos pariatur minus odio, temporibus nostrum esse
-                    totam modi atque voluptas sunt molestiae dolor minima
-                    officiis porro debitis odit qui beatae eos? Odit, minima ex
-                    odio veniam enim nesciunt aperiam aut quis quisquam velit
-                    illo sequi?
-                </p>
+                <div class="flex flex-row-reverse items-start justify-center">
+                    <LogoBanner class="w-1/6" />
+                    <div class="relative h-full w-5/6">
+                        <h2
+                            class="absolute text-3xl line-through decoration-yellow-500 opacity-30"
+                        >
+                            My Projects
+                        </h2>
+                        <h2
+                            class="text absolute rotate-6 text-4xl text-yellow-500 md:hidden"
+                        >
+                            Coming Soon
+                        </h2>
+                        <div
+                            class="relative mt-8 flex h-full w-full flex-wrap justify-center gap-4 pt-8 md:gap-8"
+                        >
+                            <p
+                                class="text absolute left-1/2 top-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 rotate-6 whitespace-nowrap text-7xl font-bold text-yellow-500 md:inline"
+                            >
+                                coming soon
+                            </p>
+
+                            <div
+                                v-for="i in 6"
+                                class="h-64 w-3/4 overflow-clip rounded-md bg-neutral-600 md:w-1/4"
+                            >
+                                <div class="relative blur">
+                                    <h1
+                                        class="text absolute top-1/2 left-1/2 z-30 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-black text-yellow-500"
+                                    >
+                                        Project {{ i }}
+                                    </h1>
+                                    <img
+                                        :src="`https://picsum.photos/300/400.webp?blur=2?random=${i}`"
+                                        class="h-full w-full object-cover brightness-50 transition-all hover:brightness-75"
+                                        laoding="lazy"
+                                        alt="project image"
+                                        title="project image"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </article>
     </div>

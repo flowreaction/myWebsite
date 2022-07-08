@@ -1,9 +1,7 @@
 <template>
     <!--  -->
-    <div
-        class="flex flex-col-reverse items-center justify-center md:ml-[calc(50%-50vw)] md:w-screen md:flex-row-reverse"
-    >
-        <div v-for="pic in gallery" class="p-6">
+    <div class="flex w-fit flex-col-reverse items-center justify-center gap-4">
+        <div v-for="pic in gallery" class="p-4">
             <img
                 :src="pic.href"
                 :alt="pic.alt"
