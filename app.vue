@@ -1,8 +1,9 @@
 <template>
+    <Body class="bg-white dark:bg-black"></Body>
     <div
-        class="bg-stone-500 font-mono text-lg leading-relaxed text-neutral-100 transition-colors dark:bg-neutral-900 dark:text-neutral-300"
+        class="bg-white font-mono text-lg leading-relaxed text-gray-800 transition-colors dark:bg-black dark:text-neutral-300"
     >
-        <NuxtPage class="mx-auto max-w-5xl p-4" />
+        <NuxtPage class="mx-auto min-h-screen max-w-5xl p-4" />
     </div>
 </template>
 
@@ -48,7 +49,7 @@ useHead({
             return 'Flo Bopp'
         }
         if (title) {
-            return `${title} - Florian Bopp -> ${typeWriter.output.value}`
+            return `Florian Bopp -> ${title}`
         } else {
             return `Florian Bopp -> ${typeWriter.output.value}`
         }
@@ -65,7 +66,7 @@ useHead({
         {
             name: 'og:description',
             content:
-                'Florian Bopp - Engineer, Problem Solver, Team Player Check out my blog or contact me for work inquiries.',
+                'Florian Bopp - Engineer, Problem Solver, Team Player => Check out my blog or contact me for work inquiries.',
         },
         { name: 'og:type', content: 'website' },
         { name: 'og:image', content: '/og.png' },

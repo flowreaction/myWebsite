@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed h-screen w-screen p-0">
+    <div class="fixed h-screen w-screen p-0 text-white">
         <div
             class="fixed top-8 left-8 z-50 flex w-full items-start justify-start"
         >

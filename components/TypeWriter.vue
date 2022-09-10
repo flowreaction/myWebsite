@@ -1,7 +1,8 @@
 <template>
-    <span>{{ output }}</span>
+    <span class="text-white" >{{ output }}</span>
     <span :class="caretColorClass, {'animate-none': isAnimating}" class="animate-blink text-amber-400">
         {{ caret }}
+    
     </span>
 </template>
 

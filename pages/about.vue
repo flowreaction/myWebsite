@@ -8,28 +8,41 @@
                 <ArrowLeft /> Back
             </NuxtLink>
         </div>
-        <article class="">
-            <h1 class="pt-16 text-4xl">About Me</h1>
-            <div
-                class="mt-4 flex flex-col-reverse items-start justify-between md:flex-row"
+        <article class="prose mx-auto w-full dark:prose-invert md:prose-xl hover:prose-a:opacity-60 transition-all">
+            <!-- <h1 class="pt-16 text-4xl">About Me</h1> -->
+            <section
+                class="mt-4 flex flex-col-reverse items-start justify-between gap-8 md:flex-row"
             >
-                <div class="mt-8 md:w-1/2">
+                <div class="mt-8 text-2xl md:w-1/2">
+                    <h2>Hey, I'm Florian</h2>
                     <p class="mb-2">
-                        Hey, I am Florian, a software engineer, father and
-                        coffee nerd.
-                        <CoffeeIcon class="inline h-8 w-8" />
+                        <br />
+                        father, software engineer and coffee nerd.
+                        <!-- <CoffeeIcon class="inline h-8 w-8" /> -->
                     </p>
                     <p>
-                        I enjoy building things that people love to use. I feel
-                        most at home when I am busy building frontend
-                        applications, but I also enjoy building backend systems.
+                        I primarily build frontend applications, but I'm also
+                        building backend systems, embedded software,
+                        machine learning and data science projects.
                     </p>
+                    
                 </div>
-                <div class="flex h-1/2 grow items-end justify-start md:w-1/2">
-                    <AnimatedHead class="h-full w-full" />
+                <div
+                    class="flex h-full grow items-center justify-center md:w-2/5"
+                >
+                    <AnimatedHead class="mx-auto w-full md:mt-20" />
                 </div>
-            </div>
-            <section class="relative z-20">
+            </section>
+            <section>
+                <p>
+                    Check out my <NuxtLink to="/blog">Blog</NuxtLink> to see
+                    what I am currently interested in.
+                    <hr>
+                    <NuxtLink to="/contact">Contact me</NuxtLink> if you want to work
+                    with me or have other inquiries.
+                </p>
+            </section>
+            <!-- <section class="relative z-20">
                 <h2 class="pt-16 text-xl">Specialized Knowledge</h2>
                 <h1 class="mb-16 text-4xl">
                     Building modern Aplications using industrty Standards
@@ -78,17 +91,14 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
         </article>
     </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-    pageTransition: {
-        name: 'swipe-page-right',
-        mode: 'out-in',
-    },
+    title: 'About Me',
 })
 </script>
 
