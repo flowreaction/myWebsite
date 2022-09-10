@@ -39,7 +39,7 @@
                         ref="nameinput"
                         type="text"
                         name="name"
-                        class="mt-0 block w-full border-0 border-b-2 border-gray-200 bg-stone-500 px-0.5 focus:border-yellow-500 focus:ring-0 dark:bg-neutral-900"
+                        class="mt-0 block w-full border-0 border-b-2 border-gray-200 bg-slate-200 px-0.5 focus:border-yellow-500 focus:ring-0 dark:bg-black"
                 /></label>
             </p>
             <p>
@@ -50,7 +50,7 @@
                         ref="emailinput"
                         type="email"
                         name="email"
-                        class="mt-0 block w-full border-0 border-b-2 border-gray-200 bg-stone-500 px-0.5 invalid:border-pink-500 invalid:text-pink-600 focus:border-yellow-500 focus:ring-0 dark:bg-neutral-900"
+                        class="mt-0 block w-full border-0 border-b-2 border-gray-200 bg-slate-200 px-0.5 invalid:border-pink-500 invalid:text-pink-600 focus:border-yellow-500 focus:ring-0 dark:bg-black"
                 /></label>
             </p>
             <p>
@@ -60,7 +60,7 @@
                         required
                         ref="messageinput"
                         name="message"
-                        class="mt-0 block w-full border-0 border-b-2 border-gray-200 bg-stone-500 px-0.5 focus:border-yellow-500 focus:ring-0 dark:bg-neutral-900 md:h-32"
+                        class="mt-0 block w-full border-0 border-b-2 border-gray-200 bg-slate-200 px-0.5 focus:border-yellow-500 focus:ring-0 dark:bg-black md:h-32"
                     ></textarea>
                 </label>
             </p>
@@ -68,7 +68,7 @@
                 <button
                     type="submit"
                     ref="submitbutton"
-                    class="border px-4 py-2 hover:cursor-paperplane hover:border-yellow-500 hover:text-yellow-500"
+                    class="border px-4 py-2 hover:border-yellow-500 hover:text-yellow-500 dark:hover:cursor-paperplane"
                 >
                     Send
                 </button>
